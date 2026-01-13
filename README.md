@@ -5,10 +5,25 @@ git clone <your-repository-url>
 cd gmail-to-sheets
 ```
 
-### 2️⃣ Create a Google Sheet
+### 2️⃣ Create Required Folders
 
-1. Go to [https://sheets.google.com](https://sheets.google.com/)
-2. Create a **new blank sheet**
+Inside the project root, make sure this folder exists:
+
+```
+gmail-to-sheets/
+ └── credentials/
+```
+
+⚠️ The `credentials` folder is mandatory.
+
+OAuth credentials **must be placed inside this folder**.
+
+---
+
+### 3️⃣ Create a Google Sheet
+
+1. Go to https://sheets.google.com
+2. Create a **new blank Google Sheet**
 3. Add the following headers in the first row:
 
 | From | Subject | Date | Content |
@@ -24,12 +39,12 @@ cd gmail-to-sheets
 2. Paste this ID in `config.py`:
 
 ```python
-SPREADSHEET_ID = "PASTE_YOUR_SHEET_ID_HERE"
+SPREADSHEET_ID ="PASTE_YOUR_SHEET_ID_HERE"
 ```
 
 ---
 
-### 3️⃣ Google Cloud Console Setup (Mandatory)
+### 4️⃣ Google Cloud Console Setup (Mandatory)
 
 Each user must configure their **own Google Cloud project**:
 
@@ -44,13 +59,20 @@ Each user must configure their **own Google Cloud project**:
 5. Create **OAuth Client ID**
     - Application type: Desktop App
 6. Download the OAuth credentials file
-7. Rename it to:
+
+---
+
+### 5️⃣ Place OAuth Credentials File
+
+After downloading the OAuth file:
+
+1. Rename the downloaded file to:
 
 ```
 credentials.json
 ```
 
-1. Place it inside:
+1. Place it inside the following folder:
 
 ```
 gmail-to-sheets/credentials/credentials.json
@@ -58,11 +80,15 @@ gmail-to-sheets/credentials/credentials.json
 
 ⚠️ This file must **never be committed** to GitHub.
 
+It is already excluded using `.gitignore`.
+
 ---
 
-### 4️⃣ Install Python Dependencies
+### 6️⃣ Install Python Dependencies
 
-Make sure Python 3.9+ is installed, then run:
+Make sure **Python 3.9 or higher** is installed.
+
+Install required libraries:
 
 ```bash
 pip install -r requirements.txt
@@ -70,9 +96,9 @@ pip install -r requirements.txt
 
 ---
 
-### 5️⃣ Run the Project
+### 7️⃣ Run the Project
 
-From the project root directory:
+From the **project root directory**:
 
 ```bash
 python src/main.py
@@ -81,7 +107,7 @@ python src/main.py
 ### First Run:
 
 - Browser opens for Google OAuth
-- Gmail & Sheets permissions granted
+- Gmail & Sheets permissions are granted
 - Unread emails are logged into the Google Sheet
 
 ### Re-run:
